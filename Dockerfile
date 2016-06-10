@@ -2,9 +2,21 @@
 # Base image
 ################################################################################
 
-FROM kireevco/openresty
+FROM nginx:1.11
 
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
+
+ENV \
+  DEBIAN_FRONTEND=noninteractive \
+  TERM=xterm-color
+
+# Install base utils
+RUN apt-get update && apt-get install -my \
+  wget \
+  curl
+
+# Use actual mirror instead of using httpredir which could break
+RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
 
 # Remove default nginx configs.
 RUN rm -f /etc/nginx/conf.d/*
@@ -37,10 +49,6 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   tidy \
   newrelic-php5 \
   htop strace dstat mc
-
-# Install Newrelic
-RUN newrelic-install install
-
 
 ## Ensure that PHP5 FPM is run as root.
 #RUN sed -i "s/user = www-data/user = root/" /etc/php5/fpm/pool.d/www.conf
