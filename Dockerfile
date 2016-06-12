@@ -37,6 +37,7 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   php5-curl \
   php5-fpm \
   php5-gd \
+  php5-memcache \
   php5-memcached \
   php5-mysql \
   php5-mcrypt \
@@ -70,4 +71,3 @@ RUN apt-get clean && apt-get update && apt-get install -my \
 # Prevent PHP Warning: 'xdebug' already loaded.
 # XDebug loaded with the core
 RUN sed -i '/.*xdebug.so$/s/^/;/' /etc/php5/mods-available/xdebug.ini
-
