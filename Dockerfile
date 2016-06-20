@@ -5,6 +5,7 @@
 FROM kireevco/openresty:latest
 
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
+ENV DOCKERIZE_VERSION v0.2.0
 
 ENV \
   DEBIAN_FRONTEND=noninteractive \
@@ -20,6 +21,10 @@ RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/dem
 
 # Remove default nginx configs.
 RUN rm -f /etc/nginx/conf.d/*
+
+# Install Dockerize (will help us with config templating)
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Install HHVM Repo
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
