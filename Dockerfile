@@ -2,7 +2,7 @@
 # Base image
 ################################################################################
 
-FROM nginx:1.11
+FROM openresty:latest
 
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
 
