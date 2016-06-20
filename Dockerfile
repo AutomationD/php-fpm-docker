@@ -2,7 +2,7 @@
 # Base image
 ################################################################################
 
-FROM openresty:latest
+FROM kireevco/openresty:latest
 
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
 
