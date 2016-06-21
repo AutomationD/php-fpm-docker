@@ -2,10 +2,9 @@
 # Base image
 ################################################################################
 
-FROM kireevco/openresty:latest
+FROM kireevco/openresty
 
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
-ENV DOCKERIZE_VERSION v0.2.0
 
 ENV \
   DEBIAN_FRONTEND=noninteractive \
@@ -22,10 +21,6 @@ RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/dem
 # Remove default nginx configs.
 RUN rm -f /etc/nginx/conf.d/*
 
-# Install Dockerize (will help us with config templating)
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-
 # Install HHVM Repo
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
 RUN echo deb http://dl.hhvm.com/debian jessie main | tee /etc/apt/sources.list.d/hhvm.list
@@ -37,6 +32,7 @@ RUN echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sour
 # Install packages
 RUN apt-get clean && apt-get update && apt-get install -my \
   supervisor \
+  python python-pip python-dev \
   curl \
   wget \
   php5-curl \
@@ -54,7 +50,11 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   yui-compressor \
   tidy \
   newrelic-php5 \
-  htop strace dstat mc
+  htop vim strace dstat mc
+
+
+# Install j2cli (will help us with config templating)
+RUN pip install j2cli && pip install j2cli[yaml]
 
 ## Ensure that PHP5 FPM is run as root.
 #RUN sed -i "s/user = www-data/user = root/" /etc/php5/fpm/pool.d/www.conf
