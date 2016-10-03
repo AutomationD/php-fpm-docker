@@ -2,8 +2,7 @@
 # Base image
 ################################################################################
 
-FROM kireevco/openresty
-
+FROM kireevco/openresty:latest
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
 
 ENV \
@@ -44,13 +43,13 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   php5-mcrypt \
   php5-sqlite \
   php5-xdebug \
-  php-apc \
   hhvm \
+  php-apc \  
   openjdk-7-jre \
   yui-compressor \
   tidy \
   newrelic-php5 \
-  htop vim strace dstat mc
+  htop vim strace dstat mc mysql-client
 
 
 # Install j2cli (will help us with config templating)
