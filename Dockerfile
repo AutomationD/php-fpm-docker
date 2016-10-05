@@ -2,7 +2,7 @@
 # Base image
 ################################################################################
 
-FROM kireevco/openresty:latest
+FROM kireevco/openresty:1.11.33.4-1.0.2j-1.11.33.4
 MAINTAINER Dmitry Kireev <dmitry@kireev.co>
 
 ENV \
