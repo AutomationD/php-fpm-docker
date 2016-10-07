@@ -49,7 +49,7 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   yui-compressor \
   tidy \
   newrelic-php5 \
-  htop vim strace dstat mc mysql-client
+  htop vim strace dstat mc mysql-client netcat
 
 
 # Install j2cli (will help us with config templating)
