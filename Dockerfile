@@ -48,7 +48,7 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   openjdk-7-jre \
   yui-compressor \
   tidy \
-  newrelic-php5
+  newrelic-php5 \
   newrelic-sysmond \
   htop vim strace dstat mc mysql-client netcat
 
