@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install -my \
   wget \
   curl
 
-# Use actual mirror instead of using httpredir which could break
-RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
-
 # Remove default nginx configs.
 RUN rm -f /etc/nginx/conf.d/*
 
