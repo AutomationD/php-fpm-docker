@@ -50,8 +50,8 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   htop vim strace dstat mc mysql-client netcat
 
 # Install Cache Primer
-wget https://cdn.pmylund.com/files/tools/ocp2/linux/ocp-2.7-amd64.tar.gz
-tar -zxf ocp-2.7-amd64.tar.gz -C /opt
+RUN wget https://cdn.pmylund.com/files/tools/ocp2/linux/ocp-2.7-amd64.tar.gz
+RUN tar -zxf ocp-2.7-amd64.tar.gz -C /opt
 
 # Install j2cli (will help us with config templating)
 RUN pip install j2cli && pip install j2cli[yaml]
