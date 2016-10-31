@@ -42,6 +42,7 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   php5-xdebug \
   hhvm \
   php-apc \
+  cron \
   openjdk-7-jre \
   yui-compressor \
   tidy \
