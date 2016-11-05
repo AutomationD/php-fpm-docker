@@ -50,6 +50,9 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   newrelic-sysmond \
   htop vim strace dstat mc mysql-client netcat
 
+# Create directories
+RUN mkdir -p /var/log/supervisor
+
 # Install Cache Primer
 RUN wget https://cdn.pmylund.com/files/tools/ocp2/linux/ocp-2.7-amd64.tar.gz
 RUN tar -zxf ocp-2.7-amd64.tar.gz -C /opt
