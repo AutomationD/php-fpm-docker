@@ -47,7 +47,6 @@ RUN apt-get clean && apt-get update && apt-get install -my \
   yui-compressor \
   tidy \
   newrelic-php5 \
-  newrelic-sysmond \
   htop vim strace dstat mc mysql-client netcat
 
 # Install Cache Primer
